@@ -52,9 +52,7 @@ const Homepage = function (props) {
       <Row>
         <Col>
           {isLoading ? (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <Spinner animation="border" role="status"></Spinner>
           ) : (
             <div className="text-center d-flex">
               <div className="mb-5 p-5 border bg-light rounded-5 me-5">
@@ -146,9 +144,15 @@ const Homepage = function (props) {
                 </div>
                 <div>
                   <Link to={"/dettagli"}>
-                    <Button variant="outline-secondary">
-                      Il meteo di domani
-                    </Button>
+                    {props.lingua === "it" ? (
+                      <Button variant="outline-secondary">
+                        Previsioni future
+                      </Button>
+                    ) : (
+                      <Button variant="outline-secondary">
+                        Future forecasts
+                      </Button>
+                    )}
                   </Link>
                 </div>
               </div>

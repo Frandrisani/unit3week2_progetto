@@ -52,16 +52,19 @@ const Dettagli = (props) => {
       <Row>
         <Col>
           {isLoading ? (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <Spinner animation="border" role="status"></Spinner>
           ) : (
             <div className="text-center mb-5 p-5 border bg-light rounded-5">
-              <p className="fw-bold fs-3 text-start">Previsioni future</p>
+              {props.lingua === "it" ? (
+                <p className="fw-bold fs-3 text-start">Previsioni future</p>
+              ) : (
+                <p className="fw-bold fs-3 text-start">Future forecasts</p>
+              )}
+
               {weathers.list.slice(0, 5).map((forecast, index) => (
-                <div key={index} className="d-flex">
+                <div key={index} className="d-flex justify-content-between">
                   <p className="me-3 fw-bold text-start">
-                    {moment(forecast.dt_txt).format("D MMM, YYYY")}
+                    {moment(forecast.dt_txt).format("D MMM, YYYY HH:mm")}
                   </p>
                   <p className="me-3">{forecast.weather[0].description}</p>
                   {props.units === "metric" ? (
@@ -72,7 +75,11 @@ const Dettagli = (props) => {
                 </div>
               ))}
               <Link to={"/"}>
-                <Button variant="outline-secondary">Torna indietro</Button>
+                {props.lingua === "it" ? (
+                  <Button variant="outline-secondary">Torna indietro</Button>
+                ) : (
+                  <Button variant="outline-secondary">Go back</Button>
+                )}
               </Link>
             </div>
           )}
